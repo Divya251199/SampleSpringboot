@@ -6,6 +6,6 @@ import javax.mail.PasswordAuthentication;
 public class MailAuthenticator extends Authenticator {
     @Override
     protected PasswordAuthentication getPasswordAuthentication() {
-        return new PasswordAuthentication(MailConstants.SENDER, "aygvpowchhlie");
+        return new PasswordAuthentication(MailConstants.SENDER, "aygvpowchhlnawie");
     }
 }
