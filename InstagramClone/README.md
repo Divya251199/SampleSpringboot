@@ -1,17 +1,21 @@
-<center>
-<h1> INSTAGRAM CLONE </h1>
-</center>
-<center>
+<h1 align = "center"> INSTAGRAM PROJECT </h1>
+
+<p align="center">
 <a href="Java url">
     <img alt="Java" src="https://img.shields.io/badge/Java->=8-darkblue.svg" />
 </a>
 <a href="Maven url" >
-    <img alt="Maven" src="https://img.shields.io/badge/Maven-3.0.6-brightgreen.svg" />
+    <img alt="Maven" src="https://img.shields.io/badge/maven-3.0.5-brightgreen.svg" />
 </a>
-   <a >
+<a href="Spring Boot url" >
+    <img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-3.0.6-brightgreen.svg" />
+</a>
+  
+<a >
     <img alt="MySQL" src="https://img.shields.io/badge/MySQL-blue.svg">
-  </a>
-</center>
+</a>
+</p>
+   
 This project is a basic web application that allows users to sign in, sign up, and manage their profile information. Additionally, users can create posts and view posts created by other users. The application uses authentication tokens to secure user data and ensure that only authenticated users can access certain features of the application.
 
 ---
@@ -69,21 +73,53 @@ The Job data model is defined in the Job class, which has the following attribut
 Id : integer
 firstName : string
 lastName : string
-age : integer
+instagramName : string
+instagramBio : string
 email : string
 password : string
+dOB : LocalDate
 phoneNumber : string
+isBlueTicked : boolean
+```
+
+* PostLike Model
+```
+Id : Long
+post : Post(ManyToOne)
+User : user(ManyToOne)
 ```
 
 * Post Model
 ```
-postId = Long
-createdDate : Timestamp
-updatedDate : Timestamp
+postId = Integer
+createdDate : LocalDateTime
 postData : String
+postCaption : string
+location : string
 @ManyToOne
 user : User
+```
 
+* InstagramFollowing Model
+```
+followingTableId = Long
+user : User (OneToOne)
+following : User (OneToOne)
+```
+
+* InstagramFollower Model
+```
+followerTableId = Long
+user : User (OneToOne)
+follower : User (OneToOne)
+```
+
+* InstagramComment Model
+```
+commentId = Long
+commentBody : String
+post : Post(ManyToOne)
+user : User (ManyToOne)
 ```
 
 * Authentication Token 
@@ -93,6 +129,15 @@ token : string
 tokenCreationDate : LocalDate
 @OneToOne 
 user : User
+```
+
+* Admin Token 
+```
+adminId : Long
+firstName : string
+lastName : string
+email : string
+
 ```
 ## Data Flow
 
@@ -118,12 +163,25 @@ POST /user/signup: create a new user account
 POST /user/signin: authenticate a user and receive an authentication token
 PUT /user: update user details
 DELETE /user/signout: authenticate a user and delete authentication token
+POST /user/like - like the post
+POST //follow/{myId}/{otherId} - to follow the user
 ```
 
 * Post Controller
 ```
 POST /post: create a new post
 GET /post: get all posts
+GET /{postId}/likeCount : get likeCount based on postId.
+```
+
+* Admin Controller
+```
+PUT /user/{id}/{blueTick}: update the blue ticket
+```
+
+* Comment Controller
+```
+POST /comment: post the comment
 ```
 
 <br>
@@ -139,15 +197,3 @@ We have used Persistent database to implement CRUD Operations.
 ## Project Summary
 
 The project is a basic web application built using Java and the Spring framework. It allows users to sign up, sign in, and manage their profile information. Users can also create and view posts. The application uses authentication tokens to secure user data and ensure that only authenticated users can access certain features. The API endpoints include user signup, signin, and update details, post creation and retrieval, and authentication token creation. 
-
-
-
-## 📝 Licence
----
-Copywrite © 2019 [Divya]().
-
-This project is [MIT]() Licensed.
- 
----
-_This README was generated with ❤️  by [readme-md-generator]()_
-
