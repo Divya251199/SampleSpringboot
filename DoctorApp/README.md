@@ -109,7 +109,7 @@ The hospital Management API is a RESTful API developed using Spring Boot, Java, 
 
 ## 📝 Licence
 ---
-Copywrite © 2019 [Divya]().
+Copywrite © 2019  [Divya]().
 
 This project is [MIT]() Licensed.
  
