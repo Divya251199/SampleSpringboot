@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("appointment")
-public class AppointmentController {
+public class AppointmentController  {
 
     @Autowired
     AppointmentService appointmentService;
